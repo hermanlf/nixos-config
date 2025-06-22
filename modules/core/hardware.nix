@@ -1,20 +1,18 @@
-{ inputs, pkgs, ... }:
-let
-  hyprland-pkgs =
-    inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
+{ config, lib, pkgs, ... }:
 {
-  hardware = {
-    graphics = {
-      enable = true;
-      package = hyprland-pkgs.mesa;
-      extraPackages = with pkgs; [
-        intel-media-driver
-        (vaapiIntel.override { enableHybridCodec = true; })
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
-    };
+  # Enable OpenGL
+  hardware.graphics = {
+    enable = true;
   };
-  hardware.enableRedistributableFirmware = true;
+  
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+  
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+  };
 }
