@@ -7,6 +7,7 @@ let
     text_color = "#FBF1C7";
     background_0 = "#1D2021";
     background_1 = "#282828";
+	background_3 = "#4f4a44";
     border_color = "#A89984";
     red = "#CC241D";
     green = "#98971A";
@@ -47,26 +48,31 @@ in
     }
 
     #workspaces {
-      padding-left: 15px;
+      padding-left: 0px;
     }
     #workspaces button {
+	  background: ${background_1};
       color: ${yellow};
-      padding-left:  5px;
-      padding-right: 5px;
-      margin-right: 10px;
+      border-radius: 0px;
     }
     #workspaces button.empty {
+	  background: ${background_1};
       color: ${text_color};
+	  border-radius: 0px;
     }
     #workspaces button.active {
+	  background: ${background_3};
       color: ${orange_bright};
+	  border-radius: 0px;
     }
 
     #clock {
+	  background: ${green};
       color: ${text_color};
     }
 
     #tray {
+	  background: ${red};
       margin-left: 10px;
       color: ${text_color};
     }
@@ -80,17 +86,45 @@ in
     }
 
     #pulseaudio, #network, #cpu, #memory, #disk, #battery, #language, #custom-notification {
-      padding-left: 5px;
-      padding-right: 5px;
-      margin-right: 10px;
-      color: ${text_color};
+      padding-left: 10px;
+      padding-right: 10px;
+	  margin-right: 10px;
+	  color: ${background_1};
     }
 
-    #pulseaudio, #language {
-      margin-left: 15px;
+    #pulseaudio {
+	  background: ${blue};
+      margin-left: 10px;
+  	}	
+	
+	#language {
+	  background: ${orange};
+      margin-left: 10px;
     }
 
+    #network {
+	  background: ${blue};
+	}
+	
+	#cpu {
+	  background: ${yellow};
+	}
+	
+	#memory {
+	  background: ${cyan};
+	}
+	
+	#disk {
+	  background: ${orange_bright};
+	}
+	
+	#battery {
+	  background: ${cyan};
+	}
+	
+	
     #custom-notification {
+	  background: ${red};
       margin-left: 15px;
       padding-right: 2px;
       margin-right: 5px;

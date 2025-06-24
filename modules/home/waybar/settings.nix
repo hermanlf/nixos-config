@@ -7,6 +7,7 @@ let
     text_color = "#FBF1C7";
     background_0 = "#1D2021";
     background_1 = "#282828";
+	background_3 = "#4f4a44";
     border_color = "#928374";
     red = "#CC241D";
     green = "#98971A";
@@ -24,10 +25,10 @@ in
     position = "top";
     layer = "top";
     height = 28;
-    margin-top = 0;
-    margin-bottom = 0;
-    margin-left = 0;
-    margin-right = 0;
+    margin-top = 5;
+    margin-bottom = 5;
+    margin-left = 5;
+    margin-right = 5;
     modules-left = [
       "custom/launcher"
       "hyprland/workspaces"
@@ -88,16 +89,15 @@ in
         "10" = [ ];		
       };
     };
-	"hyprland/window" = {
-	  "format": "{initialClass}",
-      "rewrite": {
-        " ": ""  // Displays a placeholder icon when empty
-	  }
-    }
-	}
+    "hyprland/window" = {
+     format = "{initialClass}";
+     rewrite = {
+       "" = "x"; # Display a placeholder icon when empty
+      };
+    };
     cpu = {
-      format = "<span foreground='${green}'> </span> {usage}%";
-      format-alt = "<span foreground='${green}'> </span> {avg_frequency} GHz";
+      format = "<span foreground='${text_color}'> </span> {usage}%";
+      format-alt = "<span foreground='${text_color}'> </span> {avg_frequency} GHz";
       interval = 2;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
