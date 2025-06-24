@@ -34,8 +34,7 @@ in
     }
 
     window#waybar {
-      background: #282828;
-      border-top: 1px solid ${border_color};
+      background: transparent;
     }
 
     tooltip {

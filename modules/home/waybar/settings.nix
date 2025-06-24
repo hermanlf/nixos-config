@@ -21,7 +21,7 @@ let
 in
 {
   programs.waybar.settings.mainBar = with custom; {
-    position = "bottom";
+    position = "top";
     layer = "top";
     height = 28;
     margin-top = 0;
@@ -31,10 +31,11 @@ in
     modules-left = [
       "custom/launcher"
       "hyprland/workspaces"
-      "tray"
+      "hyprland/window"
     ];
-    modules-center = [ "clock" ];
+    modules-center = [  ];
     modules-right = [
+	  "tray"
       "cpu"
       "memory"
       (if (host == "desktop") then "disk" else "")
@@ -42,6 +43,7 @@ in
       "network"
       "battery"
       "hyprland/language"
+	  "clock"
       "custom/notification"
     ];
     clock = {
@@ -61,16 +63,16 @@ in
       format = "{icon}";
       on-click = "activate";
       format-icons = {
-        "1" = "I";
-        "2" = "II";
-        "3" = "III";
-        "4" = "IV";
-        "5" = "V";
-        "6" = "VI";
-        "7" = "VII";
-        "8" = "VIII";
-        "9" = "IX";
-        "10" = "X";
+        "1" = "1";
+        "2" = "2";
+        "3" = "3";
+        "4" = "4";
+        "5" = "5";
+        "6" = "6";
+        "7" = "7";
+        "8" = "8";
+        "9" = "9";
+        "10" = "0";
         sort-by-number = true;
       };
       persistent-workspaces = {
@@ -79,8 +81,20 @@ in
         "3" = [ ];
         "4" = [ ];
         "5" = [ ];
+        "6" = [ ];
+        "7" = [ ];
+        "8" = [ ];
+        "9" = [ ];
+        "10" = [ ];		
       };
     };
+	"hyprland/window" = {
+	  "format": "{initialClass}",
+      "rewrite": {
+        " ": ""  // Displays a placeholder icon when empty
+	  }
+    }
+	}
     cpu = {
       format = "<span foreground='${green}'> </span> {usage}%";
       format-alt = "<span foreground='${green}'> </span> {avg_frequency} GHz";
