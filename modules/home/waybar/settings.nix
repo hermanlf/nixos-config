@@ -25,18 +25,18 @@ in
     position = "top";
     layer = "top";
     height = 28;
-    margin-top = 5;
-    margin-bottom = 5;
-    margin-left = 5;
-    margin-right = 5;
+    margin-top = 0;
+    margin-bottom = 0;
+    margin-left = 0;
+    margin-right = 0;
     modules-left = [
       "custom/launcher"
       "hyprland/workspaces"
+      "tray"
       "hyprland/window"
     ];
-    modules-center = [  ];
+    modules-center = [ "clock" ];
     modules-right = [
-	  "tray"
       "cpu"
       "memory"
       (if (host == "desktop") then "disk" else "")
@@ -44,7 +44,6 @@ in
       "network"
       "battery"
       "hyprland/language"
-	  "clock"
       "custom/notification"
     ];
     clock = {
@@ -85,25 +84,23 @@ in
         "6" = [ ];
         "7" = [ ];
         "8" = [ ];
-        "9" = [ ];
-        "10" = [ ];		
       };
     };
     "hyprland/window" = {
      format = "{initialClass}";
      rewrite = {
-       "" = "x"; # Display a placeholder icon when empty
+       "" = " "; # Display a placeholder icon when empty
       };
     };
     cpu = {
-      format = "<span foreground='${text_color}'> </span> {usage}%";
-      format-alt = "<span foreground='${text_color}'> </span> {avg_frequency} GHz";
+      format = "<span foreground='${green}'> </span> {usage}%";
+      format-alt = "<span foreground='${green}'> </span> {avg_frequency} GHz";
       interval = 2;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     memory = {
-      format = "<span foreground='${cyan}'>󰟜 </span>{}%";
-      format-alt = "<span foreground='${cyan}'>󰟜 </span>{used} GiB"; # 
+      format = "<span foreground='${cyan}'> </span> {}%";
+      format-alt = "<span foreground='${cyan}'> </span> {used} GiB"; # 
       interval = 2;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
@@ -115,10 +112,10 @@ in
     };
     network = {
       format-wifi = "<span foreground='${magenta}'> </span> {signalStrength}%";
-      format-ethernet = "<span foreground='${magenta}'>󰀂 </span>";
+      format-ethernet = "<span foreground='${magenta}'>󰱔 </span>Up";
       tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
-      format-disconnected = "<span foreground='${magenta}'>󰖪 </span>";
+      format-disconnected = "<span foreground='${magenta}'>󰱟 </span>Disconnected";
     };
     tray = {
       icon-size = 20;

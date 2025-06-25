@@ -35,7 +35,8 @@ in
     }
 
     window#waybar {
-      background: transparent;
+      background: ${background_1};
+      border-bottom: 1px solid ${border_color};
     }
 
     tooltip {
@@ -48,7 +49,8 @@ in
     }
 
     #workspaces {
-      padding-left: 0px;
+      padding-left: 15px;
+      border-bottom: 1px solid ${border_color};
     }
     #workspaces button {
 	  background: ${background_1};
@@ -67,12 +69,10 @@ in
     }
 
     #clock {
-	  background: ${green};
       color: ${text_color};
     }
 
     #tray {
-	  background: ${red};
       margin-left: 10px;
       color: ${text_color};
     }
@@ -85,47 +85,27 @@ in
       padding: 1px;
     }
 
+    #window {
+      padding-left: 15px;
+    }
+
     #pulseaudio, #network, #cpu, #memory, #disk, #battery, #language, #custom-notification {
-      padding-left: 10px;
-      padding-right: 10px;
-	  margin-right: 10px;
-	  color: ${background_1};
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-right: 10px;
+      color: ${text_color};
     }
 
     #pulseaudio {
-	  background: ${blue};
-      margin-left: 10px;
+      margin-left: 0px;
   	}	
 	
 	#language {
-	  background: ${orange};
-      margin-left: 10px;
+      margin-left: 0px;
     }
-
-    #network {
-	  background: ${blue};
-	}
-	
-	#cpu {
-	  background: ${yellow};
-	}
-	
-	#memory {
-	  background: ${cyan};
-	}
-	
-	#disk {
-	  background: ${orange_bright};
-	}
-	
-	#battery {
-	  background: ${cyan};
-	}
-	
 	
     #custom-notification {
-	  background: ${red};
-      margin-left: 15px;
+      margin-left: 5px;
       padding-right: 2px;
       margin-right: 5px;
     }
