@@ -1,5 +1,5 @@
 {
-  description = "FrostPhoenix's nixos configuration";
+  description = "FrostPhoenix's config customized by hermanlf";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
@@ -45,7 +45,7 @@
   outputs =
     { nixpkgs, self, ... }@inputs:
     let
-      username = "serviceacct";
+      username = "hermanlf";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;

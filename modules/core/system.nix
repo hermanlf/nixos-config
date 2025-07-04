@@ -29,6 +29,19 @@
   environment.systemPackages = with pkgs; [
     wget
     git
+	neovim
+	btop
+	curl
+	gnugrep
+	nettools
+	tldr
+	gawk
+	tmux
+	man
+	pciutils
+	less
+	mlocate
+	findutils
   ];
 
   time.timeZone = "America/Los_Angeles";

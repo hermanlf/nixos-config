@@ -41,6 +41,7 @@
     ttyper                            # cli typing test
 
     ## Monitoring / fetch
+	btop
     htop
     neofetch
     nitch                             # systhem fetch util
