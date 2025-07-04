@@ -23,7 +23,7 @@
 
     xwayland = {
       enable = true;
-      hidpi = true;
+      # hidpi = true; # This is deprecated
     };
     # enableNvidiaPatches = false;
     systemd.enable = true;
