@@ -1,7 +1,7 @@
 { host, ... }:
 let
   custom = {
-    font = "Maple Mono";
+    font = "CaskaydiaCove Nerd Font Propo";
     font_size = "18px";
     font_weight = "bold";
     text_color = "#FBF1C7";
@@ -93,20 +93,20 @@ in
       };
     };
     cpu = {
-      format = "<span foreground='${green}'> </span> {usage}%";
-      format-alt = "<span foreground='${green}'> </span> {avg_frequency} GHz";
+      format = "<span foreground='${green}'> </span>{usage}%";
+      format-alt = "<span foreground='${green}'> </span>{avg_frequency} GHz";
       interval = 2;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     memory = {
-      format = "<span foreground='${cyan}'> </span> {}%";
-      format-alt = "<span foreground='${cyan}'> </span> {used} GiB"; # 
+      format = "<span foreground='${cyan}'> </span>{}%";
+      format-alt = "<span foreground='${cyan}'> </span>{used} GiB"; # 
       interval = 2;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     disk = {
       # path = "/";
-      format = "<span foreground='${orange}'>󰋊 </span>{percentage_used}%";
+      format = "<span foreground='${orange}'>󰋊</span> {percentage_used}%";
       interval = 60;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
@@ -122,8 +122,8 @@ in
       spacing = 8;
     };
     pulseaudio = {
-      format = "{icon} {volume}%";
-      format-muted = "<span foreground='${blue}'> </span> {volume}%";
+      format = "{icon}{volume}%";
+      format-muted = "<span foreground='${blue}'> </span>{volume}%";
       format-icons = {
         default = [ "<span foreground='${blue}'> </span>" ];
       };
@@ -152,7 +152,7 @@ in
       tooltip-format = "{time}";
     };
     "hyprland/language" = {
-      format = "<span foreground='#FABD2F'> </span> {}";
+      format = "<span foreground='#FABD2F'> </span>{}";
       format-fr = "FR";
       format-en = "US";
     };
@@ -167,14 +167,14 @@ in
       tooltip = false;
       format = "{icon} ";
       format-icons = {
-        notification = "<span foreground='red'><sup></sup></span>  <span foreground='${red}'></span>";
-        none = "  <span foreground='${red}'></span>";
-        dnd-notification = "<span foreground='red'><sup></sup></span>  <span foreground='${red}'></span>";
-        dnd-none = "  <span foreground='${red}'></span>";
-        inhibited-notification = "<span foreground='red'><sup></sup></span>  <span foreground='${red}'></span>";
-        inhibited-none = "  <span foreground='${red}'></span>";
-        dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>  <span foreground='${red}'></span>";
-        dnd-inhibited-none = "  <span foreground='${red}'></span>";
+        notification = "<span foreground='red'><sup>  </sup></span><span foreground='${red}'></span>";
+        none = "<span foreground='${red}'>  </span>";
+        dnd-notification = "<span foreground='red'><sup>  </sup></span><span foreground='${red}'></span>";
+        dnd-none = "<span foreground='${red}'>  </span>";
+        inhibited-notification = "<span foreground='red'><sup>  </sup></span><span foreground='${red}'></span>";
+        inhibited-none = "<span foreground='${red}'>  </span>";
+        dnd-inhibited-notification = "<span foreground='red'><sup>  </sup></span><span foreground='${red}'></span>";
+        dnd-inhibited-none = "<span foreground='${red}'>  </span>";
       };
       return-type = "json";
       exec-if = "which swaync-client";

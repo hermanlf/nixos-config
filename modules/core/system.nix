@@ -31,8 +31,10 @@
     git
 	neovim
 	btop
+	bat
 	curl
 	gnugrep
+	ripgrep
 	nettools
 	tldr
 	gawk

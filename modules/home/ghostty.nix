@@ -13,7 +13,7 @@ in
   xdg.configFile."ghostty/config".text = ''
     # Font
     font-family = "Maple Mono"
-    font-size = ${if (host == "laptop") then "16" else "17"}
+    font-size = ${if (host == "laptop") then "16" else "15"}
     font-feature = calt
     font-feature = ss03
 
@@ -56,6 +56,7 @@ in
     keybind = ctrl+shift+left=unbind
     keybind = ctrl+shift+right=unbind
     keybind = shift+enter=text:\n
+    keybind = ctrl+shift+r=reload_config
   '';
   xdg.configFile."ghostty/themes/gruvbox".text = ''
     background = #1d2021
