@@ -23,7 +23,7 @@ in
 
         "hyprlock"
 
-        "${terminal}"
+        # "${terminal}"
         "[workspace 1 silent] ${browser}"
         "[workspace 2 silent] ${terminal}"
       ];
@@ -174,6 +174,7 @@ in
         "$mainMod, N, exec, swaync-client -t -sw"
         "CTRL SHIFT, Escape, exec, hyprctl dispatch exec '[workspace 9] missioncenter'"
         "$mainMod, equal, exec, woomer"
+	"$mainMod SHIFT, Z, exec, ~/.config/hypr/scripts/lock-then-suspend.sh"
         # "$mainMod SHIFT, W, exec, vm-start"
 
         # screenshot
