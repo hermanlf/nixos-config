@@ -25,10 +25,10 @@ in
     position = "top";
     layer = "top";
     height = 28;
-    margin-top = 0;
+    margin-top = 12;
     margin-bottom = 0;
-    margin-left = 0;
-    margin-right = 0;
+    margin-left = 12;
+    margin-right = 12;
     modules-left = [
       "custom/launcher"
       "hyprland/workspaces"
