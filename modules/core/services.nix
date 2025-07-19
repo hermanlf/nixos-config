@@ -1,5 +1,13 @@
 { pkgs, ... }:
 {
+
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "no";
+    passwordAuthentication = "true";
+    allowSFTP = true;
+  };
+
   services = {
     gvfs.enable = true;
     gnome = {
