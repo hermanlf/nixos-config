@@ -1,12 +1,13 @@
 { ... }:
 let
   custom = {
-    font = "Maple Mono";
+    font = "CaskaydiaCove Nerd Font Propo";
     font_size = "18px";
     font_weight = "bold";
     text_color = "#FBF1C7";
     background_0 = "#1D2021";
     background_1 = "#282828";
+    background_3 = "#4f4a44";
     border_color = "#A89984";
     red = "#CC241D";
     green = "#98971A";
@@ -34,8 +35,11 @@ in
     }
 
     window#waybar {
-      background: #282828;
-      border-top: 1px solid ${border_color};
+      background: rgba(0, 0, 0, 0);
+      /* border-bottom: 2px solid ${border_color}; */
+      /* border-top: 2px solid ${border_color}; */
+      /* border-left: 2px solid ${border_color}; */
+      /* border-right: 2px solid ${border_color}; */
     }
 
     tooltip {
@@ -48,19 +52,27 @@ in
     }
 
     #workspaces {
-      padding-left: 15px;
+      /* padding-left: 15px; */
+      /* border-bottom: 1px solid ${border_color}; */
+      /* border-top: 1px solid ${border_color}; */
     }
     #workspaces button {
+	/* background: ${background_1}; */
+      background: rgba(0, 0, 0, 0.2);
       color: ${yellow};
-      padding-left:  5px;
-      padding-right: 5px;
-      margin-right: 10px;
+      border-radius: 0px;
     }
     #workspaces button.empty {
+	/* background: ${background_1}; */
+      background: rgba(0, 0, 0, 0.2);
       color: ${text_color};
+	  border-radius: 0px;
     }
     #workspaces button.active {
+	/* background: ${background_3}; */
+      background: rgba(0, 0, 0, 0.2);
       color: ${orange_bright};
+	  border-radius: 0px;
     }
 
     #clock {
@@ -68,7 +80,8 @@ in
     }
 
     #tray {
-      margin-left: 10px;
+      margin-left: 20px;
+      margin-right: 10px;
       color: ${text_color};
     }
     #tray menu {
@@ -80,6 +93,10 @@ in
       padding: 1px;
     }
 
+    #window {
+      padding-left: 14px;
+    }
+
     #pulseaudio, #network, #cpu, #memory, #disk, #battery, #language, #custom-notification {
       padding-left: 5px;
       padding-right: 5px;
@@ -87,22 +104,32 @@ in
       color: ${text_color};
     }
 
-    #pulseaudio, #language {
-      margin-left: 15px;
+    #pulseaudio {
+      margin-left: 0px;
+  	}	
+	
+	#language {
+      margin-left: 0px;
     }
-
+	
     #custom-notification {
-      margin-left: 15px;
-      padding-right: 2px;
-      margin-right: 5px;
+      margin-left: 5px;
+      padding-right: 0px; /* 2px default */
+      margin-right: 3px; /* 5px default */
     }
 
     #custom-launcher {
       font-size: 20px;
       color: ${text_color};
       font-weight: bold;
-      margin-left: 15px;
-      padding-right: 10px;
+      margin-left: 6px;
+      margin-right: 15px;
+      /* padding-right: 10px; */
+    }
+
+    #custom-bluetooth {
+      color: ${blue};
     }
   '';
 }
+

@@ -4,7 +4,7 @@
   services.openssh = {
     enable = true;
     permitRootLogin = "no";
-    passwordAuthentication = "true";
+    settings.PasswordAuthentication = true;
     allowSFTP = true;
   };
 

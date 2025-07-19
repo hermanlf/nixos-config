@@ -31,8 +31,8 @@
     git
   ];
 
-  time.timeZone = "Europe/Paris";
+  time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }

@@ -1,12 +1,13 @@
 { host, ... }:
 let
   custom = {
-    font = "Maple Mono";
+    font = "CaskaydiaCove Nerd Font Propo";
     font_size = "18px";
     font_weight = "bold";
     text_color = "#FBF1C7";
     background_0 = "#1D2021";
     background_1 = "#282828";
+    background_3 = "#4f4a44";
     border_color = "#928374";
     red = "#CC241D";
     green = "#98971A";
@@ -15,23 +16,26 @@ let
     magenta = "#B16286";
     cyan = "#689D6A";
     orange = "#D65D0E";
+    cream = "#F9F5D7";
+    white = "#FFFFFF";
     opacity = "1";
     indicator_height = "2px";
   };
 in
 {
   programs.waybar.settings.mainBar = with custom; {
-    position = "bottom";
+    position = "top";
     layer = "top";
     height = 28;
-    margin-top = 0;
+    margin-top = 6;
     margin-bottom = 0;
-    margin-left = 0;
-    margin-right = 0;
+    margin-left = 6;
+    margin-right = 6;
     modules-left = [
       "custom/launcher"
       "hyprland/workspaces"
       "tray"
+      "hyprland/window"
     ];
     modules-center = [ "clock" ];
     modules-right = [
@@ -39,7 +43,8 @@ in
       "memory"
       (if (host == "desktop") then "disk" else "")
       "pulseaudio"
-      "network"
+      #"custom/bluetooth"
+      #"network"
       "battery"
       "hyprland/language"
       "custom/notification"
@@ -61,16 +66,16 @@ in
       format = "{icon}";
       on-click = "activate";
       format-icons = {
-        "1" = "I";
-        "2" = "II";
-        "3" = "III";
-        "4" = "IV";
-        "5" = "V";
-        "6" = "VI";
-        "7" = "VII";
-        "8" = "VIII";
-        "9" = "IX";
-        "10" = "X";
+        "1" = "1";
+        "2" = "2";
+        "3" = "3";
+        "4" = "4";
+        "5" = "5";
+        "6" = "6";
+        "7" = "7";
+        "8" = "8";
+        "9" = "9";
+        "10" = "0";
         sort-by-number = true;
       };
       persistent-workspaces = {
@@ -79,46 +84,63 @@ in
         "3" = [ ];
         "4" = [ ];
         "5" = [ ];
+        "6" = [ ];
+        "7" = [ ];
+        "8" = [ ];
+      };
+    };
+    "hyprland/window" = {
+     format = "{initialClass}";
+     rewrite = {
+       "" = " "; # Display a placeholder icon when empty
       };
     };
     cpu = {
-      format = "<span foreground='${green}'> </span> {usage}%";
-      format-alt = "<span foreground='${green}'> </span> {avg_frequency} GHz";
+      format = "<span foreground='${yellow}'> </span>{usage}%";
+      format-alt = "<span foreground='${yellow}'> </span>{avg_frequency} GHz";
       interval = 2;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     memory = {
-      format = "<span foreground='${cyan}'>󰟜 </span>{}%";
-      format-alt = "<span foreground='${cyan}'>󰟜 </span>{used} GiB"; # 
+      format = "<span foreground='${cyan}'> </span>{}%";
+      format-alt = "<span foreground='${cyan}'> </span>{used} GiB"; # 
       interval = 2;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     disk = {
       # path = "/";
-      format = "<span foreground='${orange}'>󰋊 </span>{percentage_used}%";
+      format = "<span foreground='${orange}'>󰋊</span> {percentage_used}%";
       interval = 60;
       on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     network = {
-      format-wifi = "<span foreground='${magenta}'> </span> {signalStrength}%";
-      format-ethernet = "<span foreground='${magenta}'>󰀂 </span>";
+      format-wifi = "<span foreground='${white}'> </span> {signalStrength}%";
+      format-ethernet = "<span foreground='${white}'>󰌘 </span>Up";
       tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
-      format-disconnected = "<span foreground='${magenta}'>󰖪 </span>";
+      format-disconnected = "<span foreground='${white}'>󰌙 </span>Disconnected";
     };
     tray = {
       icon-size = 20;
       spacing = 8;
     };
     pulseaudio = {
-      format = "{icon} {volume}%";
-      format-muted = "<span foreground='${blue}'> </span> {volume}%";
+      format = "{icon}{volume}%";
+      format-muted = "<span foreground='${magenta}'> </span>{volume}%";
       format-icons = {
-        default = [ "<span foreground='${blue}'> </span>" ];
+        default = [ "<span foreground='${magenta}'> </span>" ];
       };
       scroll-step = 2;
       on-click = "pamixer -t";
       on-click-right = "pavucontrol";
+    };
+    "custom/bluetooth" = {
+       format = "{}";
+       exec = "$HOME/.config/waybar/scripts/bluetooth.sh";
+       interval = 10;
+       on-click = "blueman-manager";
+       return-type = "json";
+       tooltip = true;
     };
     battery = {
       format = "<span foreground='${yellow}'>{icon}</span> {capacity}%";
@@ -141,7 +163,7 @@ in
       tooltip-format = "{time}";
     };
     "hyprland/language" = {
-      format = "<span foreground='#FABD2F'> </span> {}";
+      format = "<span foreground='#FABD2F'> </span>{}";
       format-fr = "FR";
       format-en = "US";
     };
@@ -154,16 +176,16 @@ in
     };
     "custom/notification" = {
       tooltip = false;
-      format = "{icon} ";
+      format = "{icon}";
       format-icons = {
-        notification = "<span foreground='red'><sup></sup></span>  <span foreground='${red}'></span>";
-        none = "  <span foreground='${red}'></span>";
-        dnd-notification = "<span foreground='red'><sup></sup></span>  <span foreground='${red}'></span>";
-        dnd-none = "  <span foreground='${red}'></span>";
-        inhibited-notification = "<span foreground='red'><sup></sup></span>  <span foreground='${red}'></span>";
-        inhibited-none = "  <span foreground='${red}'></span>";
-        dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>  <span foreground='${red}'></span>";
-        dnd-inhibited-none = "  <span foreground='${red}'></span>";
+        notification = "<span foreground='red'><sup>  </sup></span><span foreground='${red}'></span>";
+        none = "<span foreground='${red}'>  </span>";
+        dnd-notification = "<span foreground='red'><sup>  </sup></span><span foreground='${red}'></span>";
+        dnd-none = "<span foreground='${red}'>  </span>";
+        inhibited-notification = "<span foreground='red'><sup>  </sup></span><span foreground='${red}'></span>";
+        inhibited-none = "<span foreground='${red}'>  </span>";
+        dnd-inhibited-notification = "<span foreground='red'><sup>  </sup></span><span foreground='${red}'></span>";
+        dnd-inhibited-none = "<span foreground='${red}'>  </span>";
       };
       return-type = "json";
       exec-if = "which swaync-client";
@@ -174,3 +196,4 @@ in
     };
   };
 }
+

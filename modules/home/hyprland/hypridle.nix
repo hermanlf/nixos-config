@@ -23,16 +23,16 @@
 
       listener = [
         {
-          timeout = 180;
+          timeout = 500;
           on-timeout = "loginctl lock-session";
         }
         {
-          timeout = 240;
+          timeout = 560;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 300;
+          timeout = 1800;
           on-timeout = "${config.home.homeDirectory}/.config/hypr/scripts/lock-then-suspend.sh";
         }
       ];

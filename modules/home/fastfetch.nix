@@ -16,7 +16,7 @@
       "display": {
         "separator": "",
         "size": {
-            "binaryPrefix": "si",
+          "binaryPrefix": "si",
           "ndigits": 0
         },
         "percent": {

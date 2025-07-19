@@ -16,7 +16,7 @@ in
         "poweralertd &"
         "wl-clip-persist --clipboard both &"
         "wl-paste --watch cliphist store &"
-        "waybar &"
+        "killall waybar || waybar &"
         "swaync &"
         "hyprctl setcursor Bibata-Modern-Ice 24 &"
         "swww-daemon &"

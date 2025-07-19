@@ -13,7 +13,7 @@ set -e
 set -u
 
 # All supported choices
-all=(shutdown reboot suspend hibernate lockscreen)
+all=(shutdown reboot suspend lockscreen)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
@@ -41,7 +41,7 @@ declare -A actions
 actions[lockscreen]="hyprlock"
 #actions[switchuser]="???"
 actions[logout]="sway exit"
-actions[suspend]="systemctl suspend"
+actions[suspend]="$HOME/.config/hypr/scripts/lock-then-suspend.sh"
 actions[hibernate]="systemctl hibernate"
 actions[reboot]="systemctl reboot"
 actions[shutdown]="systemctl poweroff"
