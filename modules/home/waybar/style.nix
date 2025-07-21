@@ -34,6 +34,27 @@ in
       font-size: ${font_size};
     }
 
+    .modules-left {
+      background-color: rgba(46, 52, 64, 0);
+      padding: 0px 15px;
+      border-radius: 20px 20px 20px 20px;
+    }
+
+    .modules-center {
+      background-color: rgba(76, 86, 106, 0);
+      padding: 0 20px;
+      font-weight: bold;
+      border-radius: 20px 20px 20px 20px;
+      /* border-left: 2px solid #434c5e; */
+      /* border-right: 2px solid #434c5e; */
+    }
+
+    .modules-right {
+      background-color: rgba(46, 52, 64, 0);
+      padding: 0 15px;
+      border-radius: 20px 20px 20px 20px;
+    }
+
     window#waybar {
       background: rgba(0, 0, 0, 0);
       /* border-bottom: 2px solid ${border_color}; */
@@ -130,6 +151,10 @@ in
     #custom-bluetooth {
       color: ${blue};
     }
+
+    #idle_inhibitor {
+      color: ${text_color};
+    } 
   '';
 }
 

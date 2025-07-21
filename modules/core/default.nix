@@ -1,4 +1,5 @@
 { ... }:
+
 {
   imports = [
     ./bootloader.nix
@@ -18,6 +19,6 @@
     ./virtualization.nix
     ./mnt-data-ownership.nix
     ./bluetooth.nix
-    #./nvf.nix
+    ./rclone.nix
   ];
 }

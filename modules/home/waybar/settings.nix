@@ -39,6 +39,7 @@ in
     ];
     modules-center = [ "clock" ];
     modules-right = [
+      "idle_inhibitor"
       "cpu"
       "memory"
       (if (host == "desktop") then "disk" else "")
@@ -94,6 +95,16 @@ in
      rewrite = {
        "" = " "; # Display a placeholder icon when empty
       };
+    };
+    idle_inhibitor = {
+      format = "{icon}";
+      format-icons = {
+      activated = "<span foreground='${blue}'> </span>Awake ";
+      deactivated = "<span foreground='${blue}'>󰤄 </span>Sleepy ";
+      };
+      tooltip = true;
+      tooltip-format-activated = "Idle inhibition activated";
+      tooltip-format-deactivated = "Idle inhibition deactivated";
     };
     cpu = {
       format = "<span foreground='${yellow}'> </span>{usage}%";

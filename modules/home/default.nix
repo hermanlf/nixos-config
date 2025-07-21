@@ -40,9 +40,7 @@
     ./waypaper.nix                    # GUI wallpaper picker
     ./xdg-mimes.nix                   # xdg config
     ./zsh                             # shell
-    ./rclone.nix		      # sync to proton drive
     # ./nvf-configuration.nix
   ];
 
-  home.rclone.enable = true;
 }
