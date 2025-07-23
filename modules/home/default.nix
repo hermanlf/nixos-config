@@ -40,7 +40,7 @@
     ./waypaper.nix                    # GUI wallpaper picker
     ./xdg-mimes.nix                   # xdg config
     ./zsh                             # shell
-    # ./nvf-configuration.nix
+    ./nvf-configuration.nix           # configure neovim using nvf
   ];
 
 }
