@@ -121,6 +121,7 @@ install() {
 
     # Build the system (flakes + home manager)
     echo -e "\nBuilding the system...\n"
+    # Add --show-trace in the below command for better debugging
     sudo nixos-rebuild switch --show-trace --flake .#${HOST}
 }
 

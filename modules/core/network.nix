@@ -16,11 +16,13 @@
         443
         59010
         59011
-      ];
+        # Add KDE Connect ports
+      ] ++ (builtins.genList (x: x + 1714) 51);  # Ports 1714-1764
       allowedUDPPorts = [
         59010
         59011
-      ];
+        # Add KDE Connect ports 
+      ] ++ (builtins.genList (x: x + 1714) 51);  # Ports 1714-1764
     };
   };
 

@@ -22,13 +22,14 @@
     ./micro.nix                       # nano replacement
     ./nemo.nix                        # file manager
     ./nix-search/nix-search.nix       # TUI to search nixpkgs
-    ./nvim.nix                        # neovim editor
     ./obsidian.nix
     ./p10k/p10k.nix
     ./packages                        # other packages
+    ./qt-theme.nix
     ./retroarch.nix  
     ./rofi.nix                        # launcher
     ./scripts/scripts.nix             # personal scripts
+    ./services.nix                    # systemd user services (KDE COnnect)
     ./ssh.nix                         # ssh config
     ./superfile/superfile.nix         # terminal file manager
     ./swaylock.nix                    # lock screen
@@ -40,7 +41,7 @@
     ./waypaper.nix                    # GUI wallpaper picker
     ./xdg-mimes.nix                   # xdg config
     ./zsh                             # shell
-    ./nvf-configuration.nix           # configure neovim using nvf
+    ./neovim.nix                      # neovim with nvf configuration
   ];
 
 }

@@ -6,12 +6,32 @@ in
 {
   wayland.windowManager.hyprland = {
     settings = {
+      # Environment variables for Qt theming
+      env = [
+        "NIXOS_OZONE_WL,1"
+        "_JAVA_AWT_WM_NONREPARENTING,1"  # Note: fixed the asterisks
+        "DISABLE_QT5_COMPAT,0"
+        "GDK_BACKEND,wayland"
+        "ANKI_WAYLAND,1"
+        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "QT_QPA_PLATFORM,wayland"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "QT_STYLE_OVERRIDE,Breeze"
+        "QT_SYSTEM_TRAY_BACKEND,1"
+        "QT_NO_TOOLTIP,1"
+        "QT_QUICK_CONTROLS_STYLE,org.kde.breeze"
+        "MOZ_ENABLE_WAYLAND,1"
+        "SDL_VIDEODRIVER,wayland"
+        "CLUTTER_BACKEND,wayland"
+        "GTK_THEME,Colloid-Green-Dark-Gruvbox"
+        "GRIMBLAST_HIDE_CURSOR,0"
+      ];
+
       # autostart
       exec-once = [
-        # "hash dbus-update-activation-environment 2>/dev/null"
         "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-
+        "systemctl --user import-environment"
         "nm-applet &"
         "poweralertd &"
         "wl-clip-persist --clipboard both &"
@@ -22,11 +42,11 @@ in
         "swww-daemon &"
 
         "hyprlock"
-	"systemctl --user start hypridle.service"
+	      "systemctl --user start hypridle.service"
 
-        #"${terminal} --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
         "[workspace 1 silent] ${browser}"
         "[workspace 2 silent] ${terminal}"
+
       ];
 
       input = {
@@ -49,8 +69,16 @@ in
         gaps_in = 3;
         gaps_out = 6;
         border_size = 2;
+        
+        # ╭─────────────────────────────────────────────────────────────────╮
+        # │                    🎨 CLEAN GRUVBOX BORDERS                    │
+        # ╰─────────────────────────────────────────────────────────────────╯
+        # Active window: Warm gruvbox gradient (green to red)
         "col.active_border" = "rgb(98971A) rgb(CC241D) 45deg";
-        "col.inactive_border" = "0x00000000";
+        
+        # Inactive windows: Very dark gruvbox gray (almost black)
+        "col.inactive_border" = "rgb(1d2021)";  # Gruvbox dark0_hard
+        
         # border_part_of_window = false;
         no_border_on_floating = false;
       };
@@ -134,8 +162,12 @@ in
           "fadeSwitch,  0, 1,   easeOutCirc" # fade on changing activewindow and its opacity
           "fadeShadow,  1, 10,  easeOutCirc" # fade on changing activewindow for shadows
           "fadeDim,     1, 4,   fluent_decel" # the easing of the dimming of inactive windows
-          # "border,      1, 2.7, easeOutCirc"  # for animating the border's color switch speed
-          # "borderangle, 1, 30,  fluent_decel, once" # for animating the border's gradient angle - styles: once (default), loop
+          
+          # Border animations disabled for clean, static look
+          # "border,      1, 2.7, easeOutCirc"  # Smooth border color transitions
+          # "borderangle, 1, 30,  fluent_decel, loop" # Animated gradient rotation
+          "borderangle, 1, 30, glow, loop"
+          
           "workspaces,  1, 4,   easeOutCubic, fade" # styles: slide, slidevert, fade, slidefade, slidefadevert
         ];
       };
@@ -164,6 +196,7 @@ in
         "ALT, Escape, exec, hyprlock"
         "$mainMod SHIFT, Escape, exec, power-menu"
         "$mainMod, P, pseudo,"
+        "$mainMod SHIFT, P, exec, kdeconnect-app"
         "$mainMod, X, togglesplit,"
         "$mainMod, T, exec, toggle-oppacity"
         "$mainMod, E, exec, nemo"
@@ -175,9 +208,19 @@ in
         "$mainMod, N, exec, swaync-client -t -sw"
         "CTRL SHIFT, Escape, exec, hyprctl dispatch exec '[workspace 9] missioncenter'"
         "$mainMod, equal, exec, woomer"
-	"$mainMod SHIFT, Z, exec, .config/hypr/scripts/lock-then-suspend.sh"
+	      "$mainMod SHIFT, Z, exec, .config/hypr/scripts/lock-then-suspend.sh"
+        "$mainMod ALT, Q, exec, qt5ct"
         # "$mainMod SHIFT, W, exec, vm-start"
 
+        # ╭─────────────────────────────────────────────────────────────────╮
+        # │                🎯 DYNAMIC WINDOW RESIZING                      │
+        # ╰─────────────────────────────────────────────────────────────────╯
+        # Enter/exit resize mode
+        #"$mainMod, R, submap, resize"
+        
+        # Reload Hyprland configuration instantly
+        "$mainMod SHIFT, R, exec, hyprctl reload"
+        
         # screenshot
         ",Print, exec, screenshot --copy"
         "$mainMod, Print, exec, screenshot --save"
@@ -287,9 +330,14 @@ in
       #   ",XF86AudioLowerVolume,exec, pamixer -d 2"
       # ];
 
-      # mouse binding
+      # ╭─────────────────────────────────────────────────────────────────╮
+      # │                   🖱️  MOUSE BINDINGS                           │
+      # ╰─────────────────────────────────────────────────────────────────╯
       bindm = [
+        # Drag windows with Super + Left Mouse
         "$mainMod, mouse:272, movewindow"
+        
+        # Resize windows with Super + Right Mouse  
         "$mainMod, mouse:273, resizewindow"
       ];
 
@@ -353,6 +401,11 @@ in
         "float,title:^(Confirm to replace files)$"
         "float,title:^(File Operation Progress)$"
 
+        # KDE Connect - better integration
+        "float,class:^(kdeconnect.*)$"
+        "center,class:^(kdeconnect.*)$"
+        "size 800 600,class:^(kdeconnect.*)$"
+      
         "opacity 0.0 override,class:^(xwaylandvideobridge)$"
         "noanim,class:^(xwaylandvideobridge)$"
         "noinitialfocus,class:^(xwaylandvideobridge)$"
@@ -385,7 +438,23 @@ in
     };
 
     extraConfig = "
-      monitor=,preferred,auto,auto
+      # 4K Monitor with 2x scaling for crisp text and UI
+      # Format: monitor=name,resolution@refresh,position,scale
+      monitor=,3840x2160@60,0x0,1
+      
+      # Alternative: If you want 1.5x scaling instead of 2x
+      # monitor=,3840x2160@60,0x0,1.5
+      
+      # For multiple monitors, specify each one:
+      # monitor=DP-1,3840x2160@60,0x0,2        # 4K main monitor
+      # monitor=HDMI-A-1,1920x1080@60,3840x0,1 # 1080p secondary monitor
+      
+      # Cursor scaling to match monitor scale
+      cursor {
+        default_monitor = 
+        zoom_factor = 1.0
+        zoom_rigid = false
+      }
 
       xwayland {
         force_zero_scaling = true
