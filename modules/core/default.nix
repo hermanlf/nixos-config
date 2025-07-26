@@ -1,24 +1,24 @@
 { ... }:
-
 {
   imports = [
+    ./bluetooth.nix
     ./bootloader.nix
+    ./flatpak.nix
     ./hardware.nix
-    ./xserver.nix
+    ./ledger.nix              # Ledger hardware support
+    ./mnt-data-ownership.nix
     ./network.nix
     ./nh.nix
     ./pipewire.nix
     ./program.nix
+    ./rclone.nix
     ./security.nix
     ./services.nix
     ./steam.nix
     ./system.nix
-    ./flatpak.nix
     ./user.nix
-    ./wayland.nix
     ./virtualization.nix
-    ./mnt-data-ownership.nix
-    ./bluetooth.nix
-    ./rclone.nix
+    ./wayland.nix
+    ./xserver.nix
   ];
 }

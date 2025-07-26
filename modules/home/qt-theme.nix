@@ -68,7 +68,9 @@
   # ╭─────────────────────────────────────────────────────────────────────────╮
   # │                       🔧 QT ENVIRONMENT VARIABLES                      │
   # ╰─────────────────────────────────────────────────────────────────────────╯
-  # These should be added to your variables.nix file:
+  # These should be added to your variables.nix file in your hyprland setup.
+  # EDIT: Had to add the variables directly to hyprland's config.nix, else they
+  # would only work when the qt5 app was started from a terminal.
   #
   # home.sessionVariables = {
   #   QT_QPA_PLATFORMTHEME = "qt5ct";        # Use qt5ct for Qt theming

@@ -10,6 +10,7 @@
     ./discord.nix                     # discord
     ./fastfetch.nix                   # fetch tool
     ./flow.nix                        # terminal text editor
+    ./foot.nix                        # foot terminal with gruvbox theme
     ./fzf.nix                         # fuzzy finder
     ./gaming.nix                      # packages related to gaming
     ./ghostty.nix                     # terminal
@@ -17,10 +18,13 @@
     ./gnome.nix                       # gnome apps
     ./gtk.nix                         # gtk theme
     ./hyprland                        # window manager
+    ./keeper.nix                      # keeper password manager
     ./kitty.nix                       # terminal
     ./lazygit.nix
+    ./ledger-live.nix                 # Ledge Live cryptocurrency wallet
     ./micro.nix                       # nano replacement
     ./nemo.nix                        # file manager
+    ./neovim.nix                      # neovim editor
     ./nix-search/nix-search.nix       # TUI to search nixpkgs
     ./obsidian.nix
     ./p10k/p10k.nix
@@ -41,7 +45,6 @@
     ./waypaper.nix                    # GUI wallpaper picker
     ./xdg-mimes.nix                   # xdg config
     ./zsh                             # shell
-    ./neovim.nix                      # neovim with nvf configuration
   ];
 
 }

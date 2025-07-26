@@ -1,3 +1,4 @@
+# nixos-config/flake.nix
 {
   description = "hermanlf's nixos configuration";
 
@@ -47,17 +48,17 @@
     let
       username = "hermanlf";
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      lib = nixpkgs.lib;
     in
     {
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/desktop ];
+          modules = [
+            ./hosts/desktop
+            {
+              nixpkgs.config.allowUnfree = true;
+            }
+          ];
           specialArgs = {
             host = "desktop";
             inherit self inputs username;
@@ -65,7 +66,12 @@
         };
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/laptop ];
+          modules = [
+            ./hosts/laptop
+            {
+              nixpkgs.config.allowUnfree = true;
+            }
+          ];
           specialArgs = {
             host = "laptop";
             inherit self inputs username;
@@ -73,7 +79,12 @@
         };
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/vm ];
+          modules = [
+            ./hosts/vm
+            {
+              nixpkgs.config.allowUnfree = true;
+            }
+          ];
           specialArgs = {
             host = "vm";
             inherit self inputs username;

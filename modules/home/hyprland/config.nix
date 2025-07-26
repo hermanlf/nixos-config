@@ -1,7 +1,7 @@
 { ... }:
 let
   browser = "zen-beta";
-  terminal = "ghostty";
+  terminal = "foot";
 in
 {
   wayland.windowManager.hyprland = {
@@ -77,7 +77,9 @@ in
         "col.active_border" = "rgb(98971A) rgb(CC241D) 45deg";
         
         # Inactive windows: Very dark gruvbox gray (almost black)
-        "col.inactive_border" = "rgb(1d2021)";  # Gruvbox dark0_hard
+        #"col.inactive_border" = "rgb(1d2021)";  # Gruvbox dark0_hard
+        "col.inactive_border" = "rgba(E5E5FF30)";
+
         
         # border_part_of_window = false;
         no_border_on_floating = false;
@@ -166,7 +168,7 @@ in
           # Border animations disabled for clean, static look
           # "border,      1, 2.7, easeOutCirc"  # Smooth border color transitions
           # "borderangle, 1, 30,  fluent_decel, loop" # Animated gradient rotation
-          "borderangle, 1, 30, glow, loop"
+          # "borderangle, 1, 30, glow, loop"
           
           "workspaces,  1, 4,   easeOutCubic, fade" # styles: slide, slidevert, fade, slidefade, slidefadevert
         ];
@@ -181,11 +183,12 @@ in
         "$mainMod, F1, exec, show-keybinds"
 
         # keybindings
-        "$mainMod, Return, exec, ${terminal} --gtk-single-instance=true"
+        "$mainMod, Return, exec, ${terminal}"
         "ALT, Return, exec, [float; size 1111 700] ${terminal}"
         "$mainMod SHIFT, Return, exec, [fullscreen] ${terminal}"
         "$mainMod, B, exec, [workspace 1 silent] ${browser}"
-        "$mainMod, Q, killactive,"
+        "$mainMod, Q, killactive," 
+        "$mainMod SHIFT, Q, exec, pkill -f"  # Nuclear option for completely stuck windows
         "$mainMod, F, fullscreen, 0"
         "$mainMod SHIFT, F, fullscreen, 1"
         "$mainMod, Space, exec, toggle-float"
@@ -196,7 +199,7 @@ in
         "ALT, Escape, exec, hyprlock"
         "$mainMod SHIFT, Escape, exec, power-menu"
         "$mainMod, P, pseudo,"
-        "$mainMod SHIFT, P, exec, kdeconnect-app"
+        "$mainMod SHIFT, P, exec, kdeconnect-sms"
         "$mainMod, X, togglesplit,"
         "$mainMod, T, exec, toggle-oppacity"
         "$mainMod, E, exec, nemo"
@@ -209,7 +212,6 @@ in
         "CTRL SHIFT, Escape, exec, hyprctl dispatch exec '[workspace 9] missioncenter'"
         "$mainMod, equal, exec, woomer"
 	      "$mainMod SHIFT, Z, exec, .config/hypr/scripts/lock-then-suspend.sh"
-        "$mainMod ALT, Q, exec, qt5ct"
         # "$mainMod SHIFT, W, exec, vm-start"
 
         # ╭─────────────────────────────────────────────────────────────────╮
@@ -440,7 +442,8 @@ in
     extraConfig = "
       # 4K Monitor with 2x scaling for crisp text and UI
       # Format: monitor=name,resolution@refresh,position,scale
-      monitor=,3840x2160@60,0x0,1
+      # View monitor settings in terminal: hyprctl monitors
+      monitor=DP-1,3840x2160@120,0x0,1
       
       # Alternative: If you want 1.5x scaling instead of 2x
       # monitor=,3840x2160@60,0x0,1.5
