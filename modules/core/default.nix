@@ -20,5 +20,6 @@
     ./virtualization.nix
     ./wayland.nix
     ./xserver.nix
+    ./zram.nix                # zram for temporary /tmp
   ];
 }

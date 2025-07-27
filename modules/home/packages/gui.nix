@@ -17,6 +17,7 @@
     ## Utility
     dconf-editor
     gnome-disk-utility
+    loupe # Loupe (Gnome's image viewer)
     mission-center # GUI resources monitor
     zenity
 

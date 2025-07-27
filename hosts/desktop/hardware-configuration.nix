@@ -7,7 +7,10 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" ];
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-label/NIXOS_LUKS";
+  boot.initrd.luks.devices."cryptroot" = {
+    device = "/dev/disk/by-label/NIXOS_LUKS";
+    allowDiscards = true;  # Enables TRIM through LUKS encryption
+  };
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
